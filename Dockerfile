@@ -10,6 +10,11 @@ RUN apt-get update && apt-get install -y \
     python-software-properties \
   && rm -rf /var/lib/apt/lists/*
 
+RUN add-apt-repository ppa:git-core/ppa \
+  && apt-get update \ 
+  && apt-get install -y git \
+  && rm -rf /var/lib/apt/lists/* 
+
 RUN pip install virtualenv;
 
 CMD ["/bin/bash"]
