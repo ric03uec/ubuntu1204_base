@@ -5,8 +5,14 @@ RUN apt-get update && apt-get install -y \
     git-core \
     python-pip \
     python-software-properties \
+    sudo \
   && rm -rf /var/lib/apt/lists/*
 
 RUN pip install virtualenv;
+
+RUN mkdir -p /home/shippable/setup
+
+ADD addDeps.sh /home/shippable/setup/addDeps.sh
+RUN /bin/bash  /home/shippable/setup/addDeps.sh
 
 CMD ["/bin/bash"]
